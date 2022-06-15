@@ -30,7 +30,7 @@ GIT
 PATH
   remote: ../bullet_train-themes-light
   specs:
-    bullet_train-themes-light (1.0.24)
+    bullet_train-themes-light (1.0.25)
       bullet_train-themes-tailwind_css
       rails (>= 7.0.0)
 
