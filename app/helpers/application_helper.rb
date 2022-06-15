@@ -2,6 +2,6 @@ module ApplicationHelper
   include Helpers::Base
 
   def current_theme
-    :light
+    :hayabusa
   end
 end

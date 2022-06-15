@@ -1,6 +1,6 @@
 web: bin/rails server -p 3000
 worker: bundle exec sidekiq -t 25
 js: yarn build --watch
-light-js: yarn light:build --watch
-light-css: yarn light:build:css --watch
-light-mailer-css: yarn light:build:mailer:css --watch
+hayabusa-js: yarn hayabusa:build --watch
+hayabusa-css: yarn hayabusa:build:css --watch
+hayabusa-mailer-css: yarn hayabusa:build:mailer:css --watch
