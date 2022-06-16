@@ -31,6 +31,22 @@ module.exports = {
           900: '#6e6446',
         },
 
+        pink: {
+          400: '#FF8FE0',
+          500: '#FF4FCF',
+          900: '#FF0EBD',
+        },
+
+        soft_pink: {
+          400: '#DF6AC3',
+        },
+
+        hayabusa_gray: {
+          400: '#f2f3f4',
+          500: '#e5e7e8',
+          900: '#cacfd2',
+        },
+
         primary: {
           300: 'var(--primary-300)',
           400: 'var(--primary-400)',
