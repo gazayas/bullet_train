@@ -24,7 +24,7 @@ If you're building a new application with Bullet Train, you don't want to "Fork"
 
 ## Cloud Development with Gitpod
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/bullet-train-co/bullet_train)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/gazayas/bullet_train/tree/fixes/redis-on-gitpod-test)
 
 Clicking this button will set up a new Bullet Train project for development on [Gitpod](https://gitpod.io).
 
