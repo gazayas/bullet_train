@@ -1,5 +1,15 @@
-<% orders = orders.accessible_by(current_ability) %>
-<% agreement = @agreement || @agreement %>
+<% if local_assigns.include?(:full_list) %>
+  <% # Since we're just need the context, we grab the first available record. %>
+  <% # However, this should not be used for accessing the create action, because %>
+  <% # each new Order needs the context of it's direct parent. %>
+  <% # This is why I have skipped the `New` button at the bottom for the `full_list`. %>
+  <% agreement = @team.agreements.first  %>
+  <% orders = @all_orders.accessible_by(current_ability) %>
+<% else %>
+  <% orders = orders.accessible_by(current_ability) %>
+  <% agreement ||= @agreement %>
+<% end %>
+
 <% context ||= agreement %>
 <% collection ||= :orders %>
 <% hide_actions ||= false %>
@@ -13,7 +23,7 @@
     <%= render 'account/shared/box', pagy: pagy do |p| %>
       <% p.content_for :title, t(".contexts.#{context.class.name.underscore}.header") %>
       <% p.content_for :description do %>
-        <%= t(".contexts.#{context.class.name.underscore}.description#{"_empty" unless orders.any?}") %>
+        <%= t(".contexts.#{context.class.name.underscore}.description#{"_empty" unless orders.any?}", agreement_name: context.class.name) %>
         <%= render "shared/limits/index", model: orders.model %>
       <% end %>
 
@@ -38,20 +48,22 @@
         <% end %>
       <% end %>
 
-      <% p.content_for :actions do %>
-        <% unless hide_actions %>
-          <% if context == agreement %>
-            <% if can? :create, Order.new(agreement: agreement) %>
-              <%= link_to t('.buttons.new'), [:new, :account, agreement, :order], class: "#{first_button_primary(:order)} new" %>
+      <% unless  local_assigns.include?(:full_list) %>
+        <% p.content_for :actions do %>
+          <% unless hide_actions %>
+            <% if context == agreement %>
+              <% if can? :create, Order.new(agreement: agreement) %>
+                <%= link_to t('.buttons.new', agreement_name: context.class.name), [:new, :account, agreement, :order], class: "#{first_button_primary(:order)} new" %>
+              <% end %>
             <% end %>
-          <% end %>
 
-          <%# 🚅 super scaffolding will insert new targets one parent action model buttons above this line. %>
-          <%# 🚅 super scaffolding will insert new bulk action model buttons above this line. %>
-          <%= render "shared/bulk_action_select" %>
+            <%# 🚅 super scaffolding will insert new targets one parent action model buttons above this line. %>
+            <%# 🚅 super scaffolding will insert new bulk action model buttons above this line. %>
+            <%= render "shared/bulk_action_select" %>
 
-          <% unless hide_back %>
-            <%= link_to t('global.buttons.back'), [:account, context], class: "#{first_button_primary(:order)} back" %>
+            <% unless hide_back %>
+              <%= link_to t('global.buttons.back'), [:account, context], class: "#{first_button_primary(:order)} back" %>
+            <% end %>
           <% end %>
         <% end %>
       <% end %>
