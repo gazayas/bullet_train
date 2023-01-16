@@ -1,0 +1,89 @@
+en:
+  orders: &orders
+    label: &label Orders
+    breadcrumbs:
+      label: *label
+    navigation:
+      label: *label
+      icon: fal fa-puzzle-piece
+    buttons: &buttons
+      new: Add New Order
+      create: Create Order
+      edit: Edit Order
+      update: Update Order
+      destroy: Remove Order
+      shorthand:
+        edit: Edit
+        destroy: Delete
+      confirmations:
+        # TODO customize for your use-case.
+        destroy: Are you sure you want to remove %{order_name}? This will also remove any child resources and can't be undone.
+    fields: &fields
+      id:
+        heading: Order ID
+      agreement_id:
+        heading: Agreement ID
+      title:
+        _: &title Title
+        label: *title
+        heading: *title
+      # 🚅 super scaffolding will insert new fields above this line.
+      created_at:
+        _: &created_at Added
+        label: *created_at
+        heading: *created_at
+      updated_at:
+        _: &updated_at Updated
+        label: *updated_at
+        heading: *updated_at
+    api:
+      collection_actions: "Collection Actions for Orders"
+      index: "List Orders"
+      create: "Add a New Order"
+      member_actions: "Actions for an Individual Order"
+      show: "Retrieve a Order"
+      update: "Update a Order"
+      destroy: "Delete a Order"
+      fields: *fields
+    index:
+      section: "%{agreements_possessive} Orders"
+      contexts:
+        agreement:
+          header: Orders
+          description: Below is a list of Orders that have been added for %{agreement_name}.
+          description_empty: No Orders have been added for %{agreement_name}.
+      fields: *fields
+      buttons: *buttons
+    show:
+      section: "%{order_name}"
+      header: Order Details
+      description: Below are the details we have for %{order_name}.
+      manage_description: You'll also find options for updating these details or removing %{order_name} from %{agreement_name} entirely.
+      fields: *fields
+      buttons: *buttons
+    form: &form
+      buttons: *buttons
+      fields: *fields
+    new:
+      section: "New Order for %{agreement_name}"
+      header: New Order Details
+      description: Please provide the details of the new Order you'd like to add to %{agreement_name}.
+      form: *form
+    edit:
+      section: "%{order_name}"
+      header: Edit Order Details
+      description: You can update the details or settings for %{order_name} below.
+      form: *form
+    notifications:
+      created: Order was successfully created.
+      updated: Order was successfully updated.
+      destroyed: Order was successfully destroyed.
+  account:
+    orders: *orders
+  activerecord:
+    attributes:
+      order:
+        title: *title
+        # 🚅 super scaffolding will insert new activerecord attributes above this line.
+        created_at: *created_at
+        updated_at: *updated_at

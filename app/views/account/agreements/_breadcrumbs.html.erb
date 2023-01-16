@@ -1,0 +1,8 @@
+<% agreement ||= @agreement %>
+<% team ||= @team || agreement&.team %>
+<%= render 'account/teams/breadcrumbs', team: team %>
+<%= render 'account/shared/breadcrumb', label: t('.label'), url: [:account, team, :agreements] %>
+<% if agreement&.persisted? %>
+  <%= render 'account/shared/breadcrumb', label: agreement.label_string, url: [:account, agreement] %>
+<% end %>
+<%= render 'account/shared/breadcrumbs/actions', only_for: 'agreements' %>

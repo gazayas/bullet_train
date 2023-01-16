@@ -1,0 +1,8 @@
+<% order ||= @order %>
+<% agreement ||= @agreement || order&.agreement %>
+<%= render 'account/agreements/breadcrumbs', agreement: agreement %>
+<%= render 'account/shared/breadcrumb', label: t('.label'), url: [:account, agreement, :orders] %>
+<% if order&.persisted? %>
+  <%= render 'account/shared/breadcrumb', label: order.label_string, url: [:account, order] %>
+<% end %>
+<%= render 'account/shared/breadcrumbs/actions', only_for: 'orders' %>

@@ -1,0 +1,25 @@
+<% agreement = @agreement || @agreement %>
+<% context ||= agreement %>
+<% collection ||= :orders %>
+<% hide_actions ||= false %>
+<% hide_back ||= false %>
+
+<% with_attribute_settings object: order do %>
+  <tr data-id="<%= order.id %>">
+    <%= render "shared/tables/checkbox", object: order %>
+    <td><%= render 'shared/attributes/text', attribute: :title, url: [:account, order] %></td>
+    <%# 🚅 super scaffolding will insert new fields above this line. %>
+    <td><%= render 'shared/attributes/date_and_time', attribute: :created_at %></td>
+    <td class="buttons">
+      <% unless hide_actions %>
+        <% if can? :edit, order %>
+          <%= link_to t('.buttons.shorthand.edit'), [:edit, :account, order], class: 'button-secondary button-smaller' %>
+        <% end %>
+        <% if can? :destroy, order %>
+          <%= button_to t('.buttons.shorthand.destroy'), [:account, order], method: :delete, data: { confirm: t('.buttons.confirmations.destroy', model_locales(order)) }, class: 'button-secondary button-smaller' %>
+        <% end %>
+        <%# 🚅 super scaffolding will insert new action model buttons above this line. %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>

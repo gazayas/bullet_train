@@ -19,6 +19,8 @@ components:
     <%= automatic_components_for User %>
     <%= automatic_components_for Webhooks::Outgoing::Endpoint %>
     <%= automatic_components_for Scaffolding::CompletelyConcrete::TangibleThing unless scaffolding_things_disabled? %>
+    <%= automatic_components_for Agreement %>
+    <%= automatic_components_for Order %>
     <%# 🚅 super scaffolding will insert new components above this line. %>
   parameters:
     id:
@@ -50,4 +52,6 @@ paths:
   <%= paths_for User %>
   <%= automatic_paths_for Webhooks::Outgoing::Endpoint, Team %>
   <%= automatic_paths_for Scaffolding::CompletelyConcrete::TangibleThing, Scaffolding::AbsolutelyAbstract::CreativeConcept unless scaffolding_things_disabled? %>
+  <%= automatic_paths_for Agreement, Team %>
+  <%= automatic_paths_for Order, Agreement %>
   <%# 🚅 super scaffolding will insert new paths above this line. %>
